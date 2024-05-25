@@ -1,0 +1,27 @@
+{% extends "base.html" %} "
+{% load static %}
+{% block title %} Anasayfa {% endblock %}
+{% block list %} Anasayfa {% endblock %}
+{% block content %}
+
+
+    <section class="section dashboard">
+        {% comment %} cardlar {% endcomment %}
+      <div class="row">
+      {% for card in cardData %}
+          {% include 'finance/partials/Cards.html' %}
+      {% endfor %}
+      {% for gold in goldData %}
+          {% include "finance/partials/GoldCards.html" %}
+      {% endfor %}
+      {% for bist in bistData %}
+          {% include "finance/partials/BISTCards.html" %}
+      {% endfor %}
+      </div>
+      {% comment %} doviz {% endcomment %}
+      {% include "finance/partials/DovizTable.html" %}
+      {% comment %} hisse {% endcomment %}
+      {% include "finance/partials/HisseTable.html" %}
+    </section>
+
+{% endblock %}

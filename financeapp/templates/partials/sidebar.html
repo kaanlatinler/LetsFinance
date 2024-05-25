@@ -1,0 +1,39 @@
+<ul class="sidebar-nav mb-4 " id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url "index" %}">
+        <i class="bi bi-house"></i>
+        <span>Anasayfa</span>
+      </a>
+    </li><!-- End Main Page Nav -->
+
+    {% for bar in cardData %}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url "doviz" bar.CardName  %}">
+            <i class="bi bi-currency-{{bar.CardIco}}"></i>
+          <span>{{bar.CardName}}</span>
+        </a>
+      </li><!-- End Dolar-Euro Page Nav -->
+    {% endfor %}
+
+    {% for g in goldData %}
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url "altin" g.GoldName  %}">
+        <i class="bi bi-coin"></i>
+        <span>Altın</span>
+      </a>
+    </li><!-- End Gold Page Nav -->
+
+    {% endfor %}
+
+    {% for b in bistData %}
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url "bist" b.BISTName %}">
+        <i class="bi bi-bank"></i>
+        <span>BIST100</span>
+      </a>
+    </li><!-- End BIST Page Nav -->
+
+    {% endfor %}
+  </ul>

@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Doviz Kurları</h5>
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th>Kur Adı</th>
+                <th>Alış</th>
+                <th>Satış</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in dovizData %}
+                <tr>
+                    <td><a class="nav-link" href="{% url "doviz" d.DovizName %}">{{ d.DovizName }}</a></td>
+                    <td>{{ d.DovizBuyPrice }}</td>
+                    <td>{{ d.DovizSellPrice }}</td>
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+        </div>
+      </div>
+    </div>
+  </div>

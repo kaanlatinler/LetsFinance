@@ -1,0 +1,17 @@
+<div class="col-xxl-3 col-md-6">
+  <a class="nav-link" href="{% url "doviz" card.CardName %}">
+    <div class="card info-card sales-card">
+      <div class="card-body">
+        <h5 class="card-title">{{ card.CardName }}</h5>
+        <div class="d-flex align-items-center">
+          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="ri ri-money-{{ card.CardIco }}-circle-line"></i>
+          </div>
+          <div class="ps-3">
+            <h6>{{ card.CardSellPrice }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  </div>

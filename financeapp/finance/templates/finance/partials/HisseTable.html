@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hisse Kurları</h5>
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th>Menkul</th>
+                <th>Fiyat</th>
+                <th>%</th>
+                <th>Saat</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for h in hisseData %}
+                <tr>
+                    <td><a class="nav-link" href="{% url "hisse" h.HisseName %}">{{ h.HisseName }}</a></td>
+                    <td>{{ h.HissePrice }}</td>
+                    <td>{{ h.HisseRate }}</td>
+                    <td>{{ h.HisseTime }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+        </div>
+      </div>
+    </div>
+  </div>

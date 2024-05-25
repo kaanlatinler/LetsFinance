@@ -1,0 +1,73 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Döviz Hesaplama</h5>
+      <!-- Vertical Form -->
+      <form>
+        <select id="Base" class="form-select mb-3" aria-label="Default select example">
+          <option selected Disabled>Döviz Türü</option>
+          {% for doviz in dovizData %}
+            <option value="{{doviz.DovizSellPrice}}">{{ doviz.DovizCode }}</option>
+          {% endfor %}
+        </select>
+        <select id="To" class="form-select mb-3" aria-label="Default select example">
+          <option selected Disabled>Çevirilecek Tür</option>
+          {% for doviz in dovizData %}
+            <option value="{{doviz.DovizSellPrice}}">{{ doviz.DovizCode }}</option>
+          {% endfor %}
+        </select>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Tutar</span>
+            <input type="text" id="amount" class="form-control">
+            <button class="btn btn-outline-secondary" type="button" id="exchangeToBtn">Hesapla</button>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Sonuç</span>
+            <input type="text" id="resultToInput" class="form-control" placeholder="" disabled>
+        </div>
+        <!-- Center aligned spinner -->
+        <div id="spinnerTo" class="d-flex justify-content-center visually-hidden">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        </div><!-- End Center aligned spinner -->
+      </form><!-- Vertical Form -->
+
+    </div>
+  </div>
+  {% block js_files %}
+<script>
+    document.getElementById("exchangeToBtn").addEventListener("click", function() {
+    
+    var spinner = document.getElementById("spinnerTo");
+    spinner.classList.remove("visually-hidden");
+
+    var amount = document.getElementById("amount").value;
+    var Base = document.getElementById("Base").options[document.getElementById("Base").selectedIndex].innerText;
+    var To = document.getElementById("To").options[document.getElementById("To").selectedIndex].innerText;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.collectapi.com/economy/exchange?double="+ amount +"&to="+ To +"&base=" + Base);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Authorization", "apikey 4M6vfzcNZoLWuBhYqTT0D9:178GiYwG6hf0V44RIoEJt6");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            document.getElementById("spinnerTo").style.display = "none";
+
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                var data = response.result.data;
+                var calculatedstr = data[0].calculatedstr;
+                spinner.classList.add("visually-hidden");
+                document.getElementById("resultToInput").placeholder = calculatedstr + " " + Base;
+            } else {
+                alert("İşlem başarısız oldu.");
+                spinner.classList.add("visually-hidden");
+            }
+        }
+    };
+
+    xhr.send();
+});
+</script>
+ {% endblock %}

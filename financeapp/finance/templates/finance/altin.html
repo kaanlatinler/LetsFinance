@@ -1,0 +1,57 @@
+{% extends "base.html" %} "
+{% load static %}
+{% block title %} {{id}} {% endblock %}
+{% block list %} Altın {% endblock %}
+{% block content %}
+
+
+    <section class="section dashboard">
+        {% comment %} cardlar {% endcomment %}
+      <div class="row">
+      {% for card in cardData %}
+          {% include 'finance/partials/Cards.html' %}
+      {% endfor %}
+      {% for gold in goldData %}
+          {% include "finance/partials/GoldCards.html" %}
+      {% endfor %}
+      {% for bist in bistData %}
+          {% include "finance/partials/BISTCards.html" %}
+      {% endfor %}
+      </div>
+    </section>
+    <div class="row">
+        {% include "finance/partials/GrafikAltin.html" %}
+        <div class="col-md-3">
+            <div class="card info-card sales-card">
+                <div class="card-body">
+                    <h5 class="card-title">Alış Fiyatı</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="ri ri-dollar-line"></i>
+                        </div>
+                        <div class="ps-3">
+                        <h6>{{selectedData.GoldSellPrice}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-3">
+            <div class="card info-card sales-card">
+                <div class="card-body">
+                    <h5 class="card-title">Satış Fiyatı</h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="ri ri-dollar-line"></i>
+                        </div>
+                        <div class="ps-3">
+                        <h6>{{selectedData.GoldBuyPrice}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
