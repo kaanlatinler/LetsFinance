@@ -3,7 +3,7 @@ import http.client
 import uuid
 from finance.Database.database import Database
 
-api_key = "apikey 3upvqIzhkfd35PPwJpGeOm:12lRp8PyY5h8W3wWnz3XDo"
+api_key = "Your Api Key"
 def get_card_currency_data():
     conn = http.client.HTTPSConnection("api.collectapi.com")
     headers = {
